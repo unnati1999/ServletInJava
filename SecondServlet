@@ -1,0 +1,44 @@
+//SecondServlet.java
+package com.servlets;
+ import javax.servlet.GenericServlet;
+ import javax.servlet.ServletException;
+ import javax.servlet.ServletRequest;
+ import javax.servlet.ServletResponse;
+ import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.Override;
+import java.io.PrintWriter;
+
+public class SecondServlet  extends GenericServlet{
+	
+ @Override
+ public void service(ServletRequest request, ServletResponse resp) 
+		   throws ServletException, IOException {
+	       System.out.println("This IS Servlet using Generic Srevlet");
+	      resp.setContentType("text/html");
+		 PrintWriter out =resp.getWriter();
+		 out.println("<H1>this is my outpt from  genric servlet method</H1>");
+		}
+
+	
+}
+
+
+
+
+<!--web.xml-->
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>second</servlet-name>
+        <servlet-class>com.servlets.SecondServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>second</servlet-name>
+        <url-pattern>/second</url-pattern>
+    </servlet-mapping>
+</web-app>
