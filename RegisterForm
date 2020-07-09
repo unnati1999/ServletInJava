@@ -20,16 +20,29 @@ public class RegisterServlet  extends HttpServlet
 		String gender=request.getParameter("user_gender");
 		String course=request.getParameter("user_course");
         String cond=request.getParameter("condition");
+        if(cond!=null){
         if(cond.equals("checked")){
         	out.println("<h2> Name: " + name + "</h2>");
         	out.println("<h2> Password: " + password + "</h2>");
         	out.println("<h2> Email: " + email + "</h2>");
         	out.println("<h2> Gender: " + gender + "</h2>");
         	out.println("<h2> Course: " + course + "</h2>");
+        	
+        	 RequestDispatcher rd=request.getRequestDispatcher("sucess");
+        	 rd.forward(request, response);
+        	
+     
         }
         else
         {
         	out.println("<h2>You Have Not Acccepted Terms And Condition");
+        }
+        }else{
+        	out.println("<h2>You Have Not Acccepted Terms And Condition");
+        	//i want to include output of index.html
+        	RequestDispatcher rd=request.getRequestDispatcher("index.html");  
+        	rd.include(request, response);
+
         }
 	}
 
@@ -93,9 +106,6 @@ Agree Terms And Condition
 </div>
 </body>
 </html>
-
-
-
 <!--Web.xml-->  
 
 
@@ -105,6 +115,9 @@ Agree Terms And Condition
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+         <welcome-file-list>
+         <welcome-file>home.html</welcome-file>
+         </welcome-file-list>
      <servlet>
         <servlet-name>register</servlet-name>
         <servlet-class>com.practice.RegisterServlet</servlet-class>
@@ -113,9 +126,31 @@ Agree Terms And Condition
         <servlet-name>register</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>sucess</servlet-name>
+        <servlet-class>com.practice.SucessServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sucess</servlet-name>
+        <url-pattern>/sucess</url-pattern>
+    </servlet-mapping> 
     
 </web-app>
 
+
+
+<!-- Home.html-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> This is home html file.............</h1>
+<a href="index.html">Register Here</a>
+</body>
+</html>
 
 
 
